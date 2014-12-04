@@ -1,9 +1,9 @@
 ReCAPTCHA
 =========
-URL: https://github.com/google/ReCAPTCHA
-Version:
-License: BSD
-License File: LICENSE
+**URL:** https://github.com/google/ReCAPTCHA
+**Version:**
+**License:** BSD
+**License File:** LICENSE
 
 ##Description:
 ReCAPTCHA is a free CAPTCHA service that protect websites from spam and abuse.
