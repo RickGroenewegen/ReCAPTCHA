@@ -25,15 +25,18 @@
  */
 
 // Register API keys at https://www.google.com/recaptcha/admin
-siteKey = '';
-secret = '';
+try {
+  creds = DeserializeJSON(FileRead(ExpandPath('creds.json')));
+} catch(any e) {
+  creds = {'siteKey'='', 'secret'=''};
+}
 
 // ReCAPTCHA supports 40+ languages listed at: https://developers.google.com/recaptcha/docs/language
 lang = 'en';
 
 // The response from ReCAPTCHA
 if ( StructKeyExists(form, 'g-recaptcha-response') ) {
-  reCaptcha = new recaptcha(secret);
+  reCaptcha = new recaptcha(creds.secret);
   resp = reCaptcha.verifyResponse(response=form['g-recaptcha-response'], remoteip=cgi.remote_addr);
 }
 
@@ -47,14 +50,19 @@ if ( StructKeyExists(form, 'g-recaptcha-response') ) {
     <body>
 
       <!--- Form --->
-      <div>
-        <form action="?" method="post">
-          <div class="g-recaptcha" data-sitekey="#siteKey#"></div>
-          <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=#lang#"></script>
-          <br/>
-          <input type="submit" value="submit" />
-        </form>
-      </div>
+      <cfif Len(creds.siteKey) and Len(creds.secret)>
+        <div>
+          <form action="?" method="post">
+            <div class="g-recaptcha" data-sitekey="#creds.siteKey#"></div>
+            <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=#lang#"></script>
+            <br/>
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+      <cfelse>
+        <div>
+          <p>You need a <strong>siteKey</strong> and <strong>secret</strong> from <a href="https://www.google.com/recaptcha/admin">https://www.google.com/recaptcha/admin</a></p>
+      </cfif>
 
       <!--- Response --->
       <cfif IsDefined('resp')>
