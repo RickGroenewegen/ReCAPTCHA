@@ -11,4 +11,4 @@ This is Google authored code that provides plugins for third-party integration
 with ReCAPTCHA.
 
 ##Local Modifications:
-Added sample ColdFusion/CFML code - (Steve Withington)[http://github.com/stevewithington]
+Added sample ColdFusion/CFML code - [Steve Withington](http://github.com/stevewithington)
