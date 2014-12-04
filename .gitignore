@@ -1,0 +1,15 @@
+Thumbs.db
+.DS_Store
+*.[oa]
+*~
+._*
+.cache
+.project
+.rdsTempFiles
+.settings
+.tmproj
+*.esproj
+*.sublime-project
+*.sublime-workspace
+*.json
+*_notes/
