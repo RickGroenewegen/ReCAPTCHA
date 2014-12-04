@@ -54,12 +54,14 @@ component accessors=true output=false {
 
     var answers = StructKeyExists(recaptchaResponse.result, 'Filecontent') && IsJson(recaptchaResponse.result.Filecontent)
       ? DeserializeJson(recaptchaResponse.result.FileContent)
-      : recaptchResponse;
+      : recaptchaResponse;
 
     if ( IsBoolean(Trim(answers.success)) && Trim(answers.success) ) {
       recaptchaResponse.success = true;
     } else if ( StructKeyExists(answers, 'error-codes') ) {
       recaptchaResponse.errorCodes = answers['error-codes'];
+    } else {
+      recaptchaResponse.errorCodes = ['check-siteVerifyUrl'];
     }
 
     return recaptchaResponse;

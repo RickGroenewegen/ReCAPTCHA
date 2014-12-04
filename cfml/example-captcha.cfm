@@ -39,7 +39,6 @@ if ( StructKeyExists(form, 'g-recaptcha-response') ) {
   reCaptcha = new recaptcha(creds.secret);
   resp = reCaptcha.verifyResponse(response=form['g-recaptcha-response'], remoteip=cgi.remote_addr);
 }
-
 </cfscript>
 
 <cfoutput>
